@@ -3,6 +3,9 @@ const containerVideos = document.querySelector(".videos__container");
 async function buscarEMostrarVideos() {
     try {
         const busca = await fetch("http://localhost:3000/videos");
+        if (!busca.ok) {
+            throw new Error(`HTTP error: ${busca.status}`);
+        }
         const videos = await busca.json();
         videos.forEach((video) => {
             containerVideos.innerHTML += `
