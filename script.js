@@ -31,14 +31,14 @@ function filtrarVideos() {
     const tituloFiltro = barraDePesquisa.value.toLowerCase();
     const videos = document.querySelectorAll(".videos__item");
 
-    for (let video of videos) {
+    videos.forEach((video) => {
         let titulo = video.querySelector(".titulo-video").textContent.toLowerCase();
-        if (!titulo.includes(tituloFiltro)) {
-            video.style.display = "none";
-        } else {
-            video.style.display = "block";
-        }
-    }
+        video.style.display = tituloFiltro
+            ? titulo.includes(tituloFiltro)
+                ? "block"
+                : "none"
+            : "block";
+    });
 }
 
 barraDePesquisa.addEventListener("input", filtrarVideos);
