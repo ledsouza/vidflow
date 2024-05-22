@@ -1,4 +1,5 @@
 const containerVideos = document.querySelector(".videos__container");
+const barraDePesquisa = document.querySelector(".pesquisar__input");
 
 async function buscarEMostrarVideos() {
     try {
@@ -25,3 +26,19 @@ async function buscarEMostrarVideos() {
 }
 
 buscarEMostrarVideos();
+
+function filtrarVideos() {
+    const tituloFiltro = barraDePesquisa.value.toLowerCase();
+    const videos = document.querySelectorAll(".videos__item");
+
+    for (let video of videos) {
+        let titulo = video.querySelector(".titulo-video").textContent.toLowerCase();
+        if (!titulo.includes(tituloFiltro)) {
+            video.style.display = "none";
+        } else {
+            video.style.display = "block";
+        }
+    }
+}
+
+barraDePesquisa.addEventListener("input", filtrarVideos);
